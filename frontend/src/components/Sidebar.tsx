@@ -1,14 +1,14 @@
-import React from "react";
-
 const Sidebar = () => {
   return (
-    <div className="bg-red-800 text-white w-64 h-screen p-4">
-      <div className="text-xl font-semibold mb-4">Sidebar</div>
+    <div className="bg-black text-white w-56 h-screen p-4">
+      <div className="text-xl font-semibold text-red-600 mb-4">
+        Terrier Motorsport
+      </div>
       <ul>
         <li className="mb-2">
           <a
             href="/"
-            className="block w-full rounded-lg px-4 py-2 hover:bg-red-500 hover:text-white transition duration-300"
+            className="block w-full rounded-lg px-4 py-2 hover:bg-red-800 hover:text-white transition duration-300"
           >
             Link 1
           </a>
@@ -16,7 +16,7 @@ const Sidebar = () => {
         <li className="mb-2">
           <a
             href="/"
-            className="block w-full rounded-lg px-4 py-2 hover:bg-red-500 hover:text-white transition duration-300"
+            className="block w-full rounded-lg px-4 py-2 hover:bg-red-800 hover:text-white transition duration-300"
           >
             Link 2
           </a>
@@ -24,7 +24,7 @@ const Sidebar = () => {
         <li className="mb-2">
           <a
             href="/"
-            className="block w-full rounded-lg px-4 py-2 hover:bg-red-500 hover:text-white transition duration-300"
+            className="block w-full rounded-lg px-4 py-2 hover:bg-red-800 hover:text-white transition duration-300"
           >
             Link 3
           </a>

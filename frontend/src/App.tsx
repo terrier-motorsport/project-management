@@ -1,12 +1,22 @@
-import { useState } from 'react'
-import Sidebar from './components/Sidebar.tsx'
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import LinkBar from "./components/LinkBar";
+import TaskCard from "./components/TaskCard";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <Sidebar/>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-grow">
+        <Navbar />
+        <LinkBar />
+        <div className="flex">
+          <TaskCard />
+          <TaskCard />
+          <TaskCard />
+        </div>
+      </div>
     </div>
   )
 }
