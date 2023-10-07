@@ -1,8 +1,6 @@
 function LinkBar() {
   return (
-    
-    
-    <div className="container rounded card my-2 mx-4 p-4 w-auto bg-green-200 justify-between">
+    <div className="container rounded card my-2 mx-4 p-4 w-auto bg-red-100 justify-between">
       <h3 className="text-center font-bold">Important Links</h3>
       <div className="my-2 mx-4 flex justify-between">
           <a href="/">Insert Link 1 Here</a>
@@ -11,7 +9,6 @@ function LinkBar() {
           <a href="/">Insert Link 4 Here</a>
       </div>
     </div>
-
   );
 }
 
