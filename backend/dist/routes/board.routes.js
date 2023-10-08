@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const board_controller_1 = require("../controllers/board.controller");
+const card_controller_1 = require("../controllers/card.controller");
+const router = express_1.default.Router();
+router.post("/new", board_controller_1.createBoard);
+router.get("/", board_controller_1.getBoards);
+router.get("/:id", board_controller_1.getBoardById);
+router.put("/:id", board_controller_1.updateBoard);
+router.delete("/:id", board_controller_1.deleteBoard);
+router.post("/:boardId/cards", card_controller_1.createCard);
+router.post("/:boardId/cards", card_controller_1.getCardsByBoard);
+router.get("/cards/:cardId", card_controller_1.getCardById);
+router.put("/cards/:cardId", card_controller_1.updateCard);
+router.delete("/cards/:cardId", card_controller_1.deleteCard);
+module.exports = router;

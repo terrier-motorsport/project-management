@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import LinkBar from "./components/LinkBar";
 import TaskCard from "./components/TaskCard";
+import Board from "./components/Board";
 
 function App() {
 

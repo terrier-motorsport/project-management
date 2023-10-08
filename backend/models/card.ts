@@ -1,13 +1,25 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
-const Schema = mongoose.Schema;
+export interface ICard extends Document {
+  title: string;
+  column: string;
+  position: number;
+  description?: string;
+  boardId: Schema.Types.ObjectId;
+  subteam: Schema.Types.ObjectId;
+  dueDate?: Date;
+  labels: string[];
+}
 
-const cardSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    description: { type: String },
-    boardId: { type: Schema.Types.ObjectId, ref: "board", required: true },
-    listId: { type: Schema.Types.ObjectId, ref: "list", required: true },
-    subteam: {type: Schema.Types.String, ref: "subteams", required: true}
-  });
-  
-  module.exports = mongoose.model("Card", cardSchema);
+const cardSchema: Schema<ICard> = new mongoose.Schema({
+  title: { type: String, required: true },
+  column: { type: String, required: true },
+  position: { type: Number, required: true },
+  description: { type: String },
+  boardId: { type: Schema.Types.ObjectId, ref: "Board", required: true },
+  subteam: { type: Schema.Types.ObjectId, ref: "Subteam", required: true },
+  dueDate: { type: Date },
+  labels: [{ type: String }],
+});
+
+export const CardModel: Model<ICard> = mongoose.model<ICard>('Card', cardSchema);
