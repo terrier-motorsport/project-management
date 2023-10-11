@@ -10,17 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCard = exports.updateCard = exports.getCardById = exports.getCardsByBoard = exports.createCard = void 0;
-const Card = require("../models/Card");
+const card_1 = require("../models/card");
 const createCard = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { title, column, position, description, boardId, listId, subteam, dueDate, labels, } = req.body;
-        const newCard = new Card({
+        const { title, column, position, description, boardId, subteam, dueDate, labels, } = req.body;
+        const newCard = new card_1.CardModel({
             title,
             column,
             position,
             description,
             boardId,
-            listId,
             subteam,
             dueDate,
             labels,
@@ -40,7 +39,7 @@ exports.createCard = createCard;
 const getCardsByBoard = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const boardId = req.params.boardId;
     try {
-        const cards = yield Card.find({ boardId });
+        const cards = yield card_1.CardModel.find({ boardId });
         res.status(200).json({
             message: "Success.",
             cards,
@@ -55,7 +54,7 @@ exports.getCardsByBoard = getCardsByBoard;
 const getCardById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const cardId = req.params.cardId;
     try {
-        const card = yield Card.findById(cardId);
+        const card = yield card_1.CardModel.findById(cardId);
         if (!card) {
             return res.status(404).json({ message: "Card not found." });
         }
@@ -73,9 +72,7 @@ exports.getCardById = getCardById;
 const updateCard = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const cardId = req.params.cardId;
     try {
-        const updatedCard = yield Card.findByIdAndUpdate(cardId, req.body, {
-            new: true,
-        });
+        const updatedCard = yield card_1.CardModel.findByIdAndUpdate(cardId, req.body, { new: true });
         if (!updatedCard) {
             return res.status(404).json({ message: "Card not found." });
         }
@@ -93,7 +90,7 @@ exports.updateCard = updateCard;
 const deleteCard = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const cardId = req.params.cardId;
     try {
-        const deletedCard = yield Card.findByIdAndRemove(cardId);
+        const deletedCard = yield card_1.CardModel.findByIdAndRemove(cardId);
         if (!deletedCard) {
             return res.status(404).json({ message: "Card not found." });
         }

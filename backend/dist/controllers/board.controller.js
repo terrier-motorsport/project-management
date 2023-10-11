@@ -13,11 +13,11 @@ exports.deleteBoard = exports.updateBoard = exports.getBoardById = exports.getBo
 const board_1 = require("../models/board");
 const createBoard = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { title, description } = req.body;
+        const { title, description, columns } = req.body;
         if (!title) {
             return res.status(400).json({ error: 'Title is required.' });
         }
-        const newBoard = new board_1.BoardModel({ title, description });
+        const newBoard = new board_1.BoardModel({ title, description, columns });
         const savedBoard = yield newBoard.save();
         res.status(201).json({
             message: "Board created successfully.",
@@ -63,9 +63,10 @@ const getBoardById = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
 exports.getBoardById = getBoardById;
 const updateBoard = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const boardId = req.params.id;
-    const { title, description } = req.body;
+    const { title, description, columns } = req.body; // Include columns in the request body
     try {
-        const updatedBoard = yield board_1.BoardModel.findByIdAndUpdate(boardId, { title, description }, { new: true });
+        const updatedBoard = yield board_1.BoardModel.findByIdAndUpdate(boardId, { title, description, columns }, // Include columns when updating the board
+        { new: true });
         if (!updatedBoard) {
             return res.status(404).json({ message: "Board not found." });
         }

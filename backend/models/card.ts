@@ -2,7 +2,7 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface ICard extends Document {
   title: string;
-  column: string;
+  column: Schema.Types.ObjectId;
   position: number;
   description?: string;
   boardId: Schema.Types.ObjectId;
@@ -13,7 +13,7 @@ export interface ICard extends Document {
 
 const cardSchema: Schema<ICard> = new mongoose.Schema({
   title: { type: String, required: true },
-  column: { type: String, required: true },
+  column: { type: Schema.Types.ObjectId, ref: "Column", required: true },
   position: { type: Number, required: true },
   description: { type: String },
   boardId: { type: Schema.Types.ObjectId, ref: "Board", required: true },

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-const Card = require("../models/Card");
+import { ICard, CardModel } from "../models/card";
 
 export const createCard = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -9,25 +9,23 @@ export const createCard = async (req: Request, res: Response, next: NextFunction
       position,
       description,
       boardId,
-      listId,
       subteam,
       dueDate,
       labels,
     } = req.body;
 
-    const newCard = new Card({
+    const newCard: ICard = new CardModel({
       title,
       column,
       position,
       description,
       boardId,
-      listId,
       subteam,
       dueDate,
       labels,
     });
 
-    const savedCard = await newCard.save();
+    const savedCard: ICard = await newCard.save();
 
     res.status(201).json({
       message: "Card created successfully.",
@@ -43,7 +41,7 @@ export const getCardsByBoard = async (req: Request, res: Response, next: NextFun
   const boardId = req.params.boardId;
 
   try {
-    const cards = await Card.find({ boardId });
+    const cards: ICard[] = await CardModel.find({ boardId });
     res.status(200).json({
       message: "Success.",
       cards,
@@ -58,7 +56,7 @@ export const getCardById = async (req: Request, res: Response, next: NextFunctio
   const cardId = req.params.cardId;
 
   try {
-    const card = await Card.findById(cardId);
+    const card: ICard | null = await CardModel.findById(cardId);
 
     if (!card) {
       return res.status(404).json({ message: "Card not found." });
@@ -78,9 +76,11 @@ export const updateCard = async (req: Request, res: Response, next: NextFunction
   const cardId = req.params.cardId;
 
   try {
-    const updatedCard = await Card.findByIdAndUpdate(cardId, req.body, {
-      new: true,
-    });
+    const updatedCard: ICard | null = await CardModel.findByIdAndUpdate(
+      cardId,
+      req.body,
+      { new: true }
+    );
 
     if (!updatedCard) {
       return res.status(404).json({ message: "Card not found." });
@@ -100,7 +100,7 @@ export const deleteCard = async (req: Request, res: Response, next: NextFunction
   const cardId = req.params.cardId;
 
   try {
-    const deletedCard = await Card.findByIdAndRemove(cardId);
+    const deletedCard: ICard | null = await CardModel.findByIdAndRemove(cardId);
 
     if (!deletedCard) {
       return res.status(404).json({ message: "Card not found." });
