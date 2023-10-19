@@ -27,7 +27,7 @@ exports.CardModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const cardSchema = new mongoose_1.default.Schema({
     title: { type: String, required: true },
-    column: { type: String, required: true },
+    column: { type: mongoose_1.Schema.Types.ObjectId, ref: "Column", required: true },
     position: { type: Number, required: true },
     description: { type: String },
     boardId: { type: mongoose_1.Schema.Types.ObjectId, ref: "Board", required: true },

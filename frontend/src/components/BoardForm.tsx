@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+
+interface BoardData {
+  title: string;
+}
 
 function BoardForm() {
-  const [boardData, setBoardData] = useState({ title: '' });
+  const [boardData, setBoardData] = useState<BoardData>({ title: '' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setBoardData({ ...boardData, [name]: value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch('http://localhost:3000/boards/new', {
         method: 'POST',
@@ -21,11 +25,11 @@ function BoardForm() {
           title: boardData.title,
         }),
       });
-  
+
       if (response.ok) {
         const newBoard = await response.json();
         console.log('New board created:', newBoard);
-        setBoardData({ title: '' }); 
+        setBoardData({ title: '' });
       } else {
         console.error('Failed to create a new board.');
       }

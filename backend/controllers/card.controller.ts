@@ -25,6 +25,12 @@ export const createCard = async (req: Request, res: Response, next: NextFunction
       labels,
     });
 
+
+    // Check References, Form will send strings with names. Object takes ID.
+    // Update Note: We will force ID. 
+    // In front-end, column and subteam will be a dropdown select.
+    // Board will be done by context
+
     const savedCard: ICard = await newCard.save();
 
     res.status(201).json({

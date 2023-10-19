@@ -24,6 +24,10 @@ const createCard = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             dueDate,
             labels,
         });
+        // Check References, Form will send strings with names. Object takes ID.
+        // Update Note: We will force ID. 
+        // In front-end, column and subteam will be a dropdown select.
+        // Board will be done by context
         const savedCard = yield newCard.save();
         res.status(201).json({
             message: "Card created successfully.",

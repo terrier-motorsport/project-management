@@ -26,18 +26,18 @@ import {
 const router = express.Router();
 
 // Board Routes
-router.post('/boards/new', createBoard);
-router.get('/boards', getBoards);
-router.get('/boards/:id', getBoardById);
-router.put('/boards/:id', updateBoard);
-router.delete('/boards/:id', deleteBoard);
+router.post('/new', createBoard);
+router.get('/', getBoards);
+router.get('/:id', getBoardById);
+router.put('/:id', updateBoard);
+router.delete('/:id', deleteBoard);
 
 // Card Routes
-router.post('/boards/:boardId/cards/new', createCard);
-router.get('/boards/:boardId/cards', getCardsByBoard);
-router.get('/boards/cards/:cardId', getCardById);
-router.put('/boards/cards/:cardId', updateCard);
-router.delete('/boards/cards/:cardId', deleteCard);
+router.post('/:boardId/cards/new', createCard);
+router.get('/:boardId/cards', getCardsByBoard);
+router.get('/cards/:cardId', getCardById);
+router.put('/cards/:cardId', updateCard);
+router.delete('/cards/:cardId', deleteCard);
 
 // Column Routes
 router.post('/columns/new', createColumn);
