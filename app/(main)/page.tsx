@@ -47,7 +47,7 @@ const MainPage = () => {
         An in-house software developed by the team at Terrier Motorsport
       </div>
       <Button className="mt-6" size="lg" asChild>
-        <Link href="/sign-up">
+        <Link href="/sign-in">
           Login
         </Link>
       </Button>
